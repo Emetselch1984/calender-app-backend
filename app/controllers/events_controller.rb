@@ -21,6 +21,11 @@ class EventsController < ApplicationController
       render json: event.errors,status: 422
     end
   end
+  def destroy
+    event = Event.find(params[:id])
+    event.destroy!
+    render json: event
+  end
   private
   def events_params
     params.require(:event).permit(:id,:name,:start,:end,:description,:color)
